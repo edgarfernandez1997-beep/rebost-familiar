@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-
+  
 <body>
 
   <header>
@@ -17,10 +17,13 @@
 
   <main>
 
-    <div class="card">
-      <h2>📦 Inventari</h2>
-      <p>Gestiona els productes disponibles.</p>
-    </div>
+<div class="card">
+  <h2>📦 Inventari</h2>
+
+  <div id="inventari">
+    Carregant productes...
+  </div>
+</div>
 
     <div class="card">
       <h2>🛒 Llista de compra</h2>
@@ -38,7 +41,32 @@
     </div>
 
   </main>
+  
+<script>
 
+fetch("https://script.google.com/macros/s/AKfycbzFZdGk3ShESicdqN50dEpDV21g_Ssf4NPZ6gSNoZp_ORDIQmkN0Di0nG3qvgevDqRI/exec")
+  .then(res => res.json())
+  .then(productes => {
+
+    let html = "";
+
+    productes.forEach(producte => {
+
+      html += `
+        <p>
+          <strong>${producte.Nom}</strong>
+          (${producte.Quantitat})
+        </p>
+      `;
+
+    });
+
+    document.getElementById("inventari").innerHTML = html;
+
+  });
+
+</script>
+  
 </body>
 
 </html>
