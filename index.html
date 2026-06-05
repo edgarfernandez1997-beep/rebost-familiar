@@ -11,9 +11,13 @@
   
 <body>
 
-  <header>
-    <h1>🥫 Rebost Familiar</h1>
-  </header>
+<header>
+  <h1>🥫 Rebost Familiar</h1>
+
+  <button onclick="nouProducte()">
+    ➕ Nou producte
+  </button>
+</header>
 
   <main>
 
@@ -41,6 +45,16 @@
     </div>
 
   </main>
+
+function nouProducte() {
+
+  const nom = prompt("Nom del producte:");
+
+  if (!nom) return;
+
+  alert("Producte: " + nom);
+
+}
   
 <script>
 
