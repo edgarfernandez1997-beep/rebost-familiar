@@ -167,7 +167,15 @@ document.getElementById("guardarProducte").onclick = function() {
 };
 
 function veureProducte(producte) {
-  alert(producte.Nom);
+
+  alert(
+    "Nom: " + producte.Nom + "\n\n" +
+    "Categoria: " + producte.Categoria + "\n" +
+    "Quantitat: " + producte.Quantitat + "\n" +
+    "Ubicació: " + producte["Ubicació"] + "\n" +
+    "Mínim: " + producte["Mínim"] + "\n" +
+    "Lloc compra: " + producte["Lloc compra"]
+  );
 
 }
   
