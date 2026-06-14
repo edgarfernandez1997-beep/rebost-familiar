@@ -35,9 +35,13 @@
   </div>
 
   <div class="card">
-    <h2>⚠️ Stock baix</h2>
-    <p>Productes per sota del mínim.</p>
+  <h2>⚠️ Stock baix</h2>
+
+  <div id="stockBaix">
+    No hi ha productes sota mínim.
   </div>
+
+</div>
 
   <div class="card">
     <h2>⏳ Caduca aviat</h2>
@@ -161,6 +165,8 @@ fetch(API_URL)
     });
 
     document.getElementById("inventari").innerHTML = html;
+    
+    mostrarStockBaix(productes);
 
   });
 
@@ -241,6 +247,36 @@ document.getElementById("tancarDetall").onclick = function() {
   document.getElementById("detallProducte").style.display = "none";
 
 };
+
+function mostrarStockBaix(productes) {
+
+  let html = "";
+
+  productes.forEach(producte => {
+
+    const quantitat = Number(producte.Quantitat || 0);
+    const minim = Number(producte["Mínim"] || 0);
+
+    if (quantitat <= minim) {
+
+      html += `
+        <p>
+          ${producte.Nom}
+          (${quantitat}/${minim})
+        </p>
+      `;
+
+    }
+
+  });
+
+  if (html === "") {
+    html = "Tot correcte 👍";
+  }
+
+  document.getElementById("stockBaix").innerHTML = html;
+
+}
   
 </script>
 
