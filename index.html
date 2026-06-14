@@ -211,16 +211,36 @@ document.getElementById("guardarProducte").onclick = function() {
 
 function veureProducte(producte) {
 
-  alert(
-    "Nom: " + producte.Nom + "\n\n" +
-    "Categoria: " + producte.Categoria + "\n" +
-    "Quantitat: " + producte.Quantitat + "\n" +
-    "Ubicació: " + producte["Ubicació"] + "\n" +
-    "Mínim: " + producte["Mínim"] + "\n" +
-    "Lloc compra: " + producte["Lloc compra"]
-  );
+  document.getElementById("detallNom").textContent =
+    producte.Nom || "";
+
+  document.getElementById("detallCategoria").textContent =
+    producte.Categoria || "";
+
+  document.getElementById("detallQuantitat").textContent =
+    producte.Quantitat || "";
+
+  document.getElementById("detallUbicacio").textContent =
+    producte["Ubicació"] || "";
+
+  document.getElementById("detallMinim").textContent =
+    producte["Mínim"] || "";
+
+  document.getElementById("detallCaducitat").textContent =
+    producte.DataCaducitat || "";
+
+  document.getElementById("detallLlocCompra").textContent =
+    producte["Lloc compra"] || "";
+
+  document.getElementById("detallProducte").style.display = "flex";
 
 }
+  
+document.getElementById("tancarDetall").onclick = function() {
+
+  document.getElementById("detallProducte").style.display = "none";
+
+};
   
 </script>
 
