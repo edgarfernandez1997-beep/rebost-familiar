@@ -89,6 +89,7 @@ function nouProducte() {
   .then(res => {
     console.log("RESPOSTA:", res);
     alert("Producte afegit!");
+    location.reload();
   })
   .catch(error => {
     console.error("ERROR", error);
