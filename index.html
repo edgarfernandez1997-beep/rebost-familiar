@@ -47,7 +47,7 @@
 </main>
 
 <div id="formulariProducte" style="
-display:none;
+display:flex;
 position:fixed;
 top:0;
 left:0;
@@ -121,10 +121,8 @@ fetch(API_URL)
   });
 
 function nouProducte() {
-
-  alert("FUNCIONA");
   
-  document.getElementById("formulariProducte").style.display = "block";
+  document.getElementById("formulariProducte").style.display = "flex";
 
 }
 
