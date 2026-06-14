@@ -262,7 +262,7 @@ function mostrarStockBaix(productes) {
     const quantitat = Number(producte.Quantitat || 0);
     const minim = Number(producte["Mínim"] || 0);
 
-    if (quantitat = minim) {
+    if (quantitat < minim) {
 
       html += `
         <p>
