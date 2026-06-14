@@ -75,7 +75,25 @@ function nouProducte() {
 
   if (!nom) return;
 
-  alert("Producte: " + nom);
+  const quantitat = prompt("Quantitat:");
+
+  if (!quantitat) return;
+
+  fetch("https://script.google.com/macros/s/AKfycbzC_iSt30qvcJ0IHN_W9M9gLMS3ry0mCvhRw90d53TnUGBjqPMDdhVdtorF5tMRz8L_/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      nom: nom,
+      quantitat: quantitat
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+
+    alert("Producte afegit!");
+
+    location.reload();
+
+  });
 
 }
   
