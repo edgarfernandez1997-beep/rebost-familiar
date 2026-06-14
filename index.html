@@ -108,7 +108,8 @@ fetch(API_URL)
     productes.forEach(producte => {
 
       html += `
-        <p>
+        <p onclick='veureProducte(${JSON.stringify(producte)})'
+          style="cursor:pointer;">
           <strong>${producte.Nom}</strong>
           (${producte.Quantitat})
         </p>
@@ -165,6 +166,11 @@ document.getElementById("guardarProducte").onclick = function() {
 
 };
 
+function veureProducte(producte) {
+  alert(producte.Nom);
+
+}
+  
 </script>
 
 </body>
