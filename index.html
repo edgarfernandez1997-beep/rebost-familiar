@@ -48,7 +48,7 @@
   
 <script>
 
-fetch("https://script.google.com/macros/s/AKfycbzC_iSt30qvcJ0IHN_W9M9gLMS3ry0mCvhRw90d53TnUGBjqPMDdhVdtorF5tMRz8L_/exec")
+fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec")
   .then(res => res.json())
   .then(productes => {
 
@@ -79,7 +79,7 @@ function nouProducte() {
 
   if (!quantitat) return;
 
-  fetch("https://script.google.com/macros/s/AKfycbzC_iSt30qvcJ0IHN_W9M9gLMS3ry0mCvhRw90d53TnUGBjqPMDdhVdtorF5tMRz8L_/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec", {
     method: "POST",
     body: JSON.stringify({
       nom: nom,
