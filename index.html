@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-  
+
 <body>
 
 <header>
@@ -19,70 +19,68 @@
   </button>
 </header>
 
-  <main>
+<main>
 
-<div class="card">
-  <h2>📦 Inventari</h2>
+  <div class="card">
+    <h2>📦 Inventari</h2>
 
-  <div id="inventari">
-    Carregant productes...
-  </div>
-</div>
-
-    <div class="card">
-      <h2>🛒 Llista de compra</h2>
-      <p>Productes pendents de comprar.</p>
+    <div id="inventari">
+      Carregant productes...
     </div>
-
-    <div class="card">
-      <h2>⚠️ Stock baix</h2>
-      <p>Productes per sota del mínim.</p>
-    </div>
-
-    <div class="card">
-      <h2>⏳ Caduca aviat</h2>
-      <p>Productes propers a caducar.</p>
-    </div>
-
-  </main>
-  
-  <div id="formulariProducte" style="display:none;" class="modal">
-
-  <div class="modal-content">
-
-    <h2>Nou producte</h2>
-
-    <label>Nom</label><br>
-    <input type="text" id="nouNom"><br><br>
-
-    <label>Categoria</label><br>
-    <input type="text" id="novaCategoria"><br><br>
-
-    <label>Quantitat</label><br>
-    <input type="number" id="novaQuantitat"><br><br>
-
-    <label>Ubicació</label><br>
-    <input type="text" id="novaUbicacio"><br><br>
-
-    <label>Mínim</label><br>
-    <input type="number" id="nouMinim"><br><br>
-
-    <label>Data caducitat</label><br>
-    <input type="date" id="novaCaducitat"><br><br>
-
-    <label>Lloc compra</label><br>
-    <input type="text" id="nouLlocCompra"><br><br>
-
-    <button id="guardarProducte">Guardar</button>
-    <button id="cancelarProducte">Cancel·lar</button>
-
   </div>
 
+  <div class="card">
+    <h2>🛒 Llista de compra</h2>
+    <p>Productes pendents de comprar.</p>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Stock baix</h2>
+    <p>Productes per sota del mínim.</p>
+  </div>
+
+  <div class="card">
+    <h2>⏳ Caduca aviat</h2>
+    <p>Productes propers a caducar.</p>
+  </div>
+
+</main>
+
+<div id="formulariProducte" style="display:none; padding:20px; background:white; border:1px solid #ddd; margin:20px;">
+
+  <h2>Nou producte</h2>
+
+  <label>Nom</label><br>
+  <input type="text" id="nouNom"><br><br>
+
+  <label>Categoria</label><br>
+  <input type="text" id="novaCategoria"><br><br>
+
+  <label>Quantitat</label><br>
+  <input type="number" id="novaQuantitat"><br><br>
+
+  <label>Ubicació</label><br>
+  <input type="text" id="novaUbicacio"><br><br>
+
+  <label>Mínim</label><br>
+  <input type="number" id="nouMinim"><br><br>
+
+  <label>Data caducitat</label><br>
+  <input type="date" id="novaCaducitat"><br><br>
+
+  <label>Lloc compra</label><br>
+  <input type="text" id="nouLlocCompra"><br><br>
+
+  <button id="guardarProducte">Guardar</button>
+  <button id="cancelarProducte">Cancel·lar</button>
+
 </div>
-  
+
 <script>
 
-fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec")
+const API_URL = "https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec";
+
+fetch(API_URL)
   .then(res => res.json())
   .then(productes => {
 
@@ -105,35 +103,50 @@ fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA
 
 function nouProducte() {
 
-  const nom = prompt("Nom del producte:");
+  document.getElementById("formulariProducte").style.display = "block";
 
-  if (!nom) return;
+}
 
-  const quantitat = prompt("Quantitat:");
+document.getElementById("cancelarProducte").onclick = function() {
 
-  if (!quantitat) return;
+  document.getElementById("formulariProducte").style.display = "none";
 
-  fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec", {
+};
+
+document.getElementById("guardarProducte").onclick = function() {
+
+  const nom = document.getElementById("nouNom").value;
+  const categoria = document.getElementById("novaCategoria").value;
+  const quantitat = document.getElementById("novaQuantitat").value;
+  const ubicacio = document.getElementById("novaUbicacio").value;
+  const minim = document.getElementById("nouMinim").value;
+  const dataCaducitat = document.getElementById("novaCaducitat").value;
+  const llocCompra = document.getElementById("nouLlocCompra").value;
+
+  fetch(API_URL, {
     method: "POST",
     body: JSON.stringify({
-      nom: nom,
-      quantitat: quantitat
+      nom,
+      categoria,
+      quantitat,
+      ubicacio,
+      minim,
+      dataCaducitat,
+      llocCompra
     })
   })
-  .then(res => {
-    console.log("RESPOSTA:", res);
+  .then(() => {
     alert("Producte afegit!");
     location.reload();
   })
   .catch(error => {
-    console.error("ERROR", error);
+    console.error(error);
     alert("ERROR");
   });
 
-}
-  
-</script>
-  
-</body>
+};
 
+</script>
+
+</body>
 </html>
