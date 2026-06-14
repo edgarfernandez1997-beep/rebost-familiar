@@ -46,6 +46,40 @@
 
   </main>
   
+  <div id="formulariProducte" style="display:none;" class="modal">
+
+  <div class="modal-content">
+
+    <h2>Nou producte</h2>
+
+    <label>Nom</label><br>
+    <input type="text" id="nouNom"><br><br>
+
+    <label>Categoria</label><br>
+    <input type="text" id="novaCategoria"><br><br>
+
+    <label>Quantitat</label><br>
+    <input type="number" id="novaQuantitat"><br><br>
+
+    <label>Ubicació</label><br>
+    <input type="text" id="novaUbicacio"><br><br>
+
+    <label>Mínim</label><br>
+    <input type="number" id="nouMinim"><br><br>
+
+    <label>Data caducitat</label><br>
+    <input type="date" id="novaCaducitat"><br><br>
+
+    <label>Lloc compra</label><br>
+    <input type="text" id="nouLlocCompra"><br><br>
+
+    <button id="guardarProducte">Guardar</button>
+    <button id="cancelarProducte">Cancel·lar</button>
+
+  </div>
+
+</div>
+  
 <script>
 
 fetch("https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec")
