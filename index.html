@@ -44,9 +44,13 @@
 </div>
 
   <div class="card">
-    <h2>⏳ Caduca aviat</h2>
-    <p>Productes propers a caducar.</p>
+  <h2>⏳ Caduca aviat</h2>
+
+  <div id="caducaAviat">
+    No hi ha productes propers a caducar.
   </div>
+
+</div>
 
 </main>
 
@@ -167,6 +171,7 @@ fetch(API_URL)
     document.getElementById("inventari").innerHTML = html;
     
     mostrarStockBaix(productes);
+    mostrarCaducaAviat(productes);
 
   });
 
@@ -257,7 +262,7 @@ function mostrarStockBaix(productes) {
     const quantitat = Number(producte.Quantitat || 0);
     const minim = Number(producte["Mínim"] || 0);
 
-    if (quantitat <= minim) {
+    if (quantitat = minim) {
 
       html += `
         <p>
@@ -277,7 +282,80 @@ function mostrarStockBaix(productes) {
   document.getElementById("stockBaix").innerHTML = html;
 
 }
-  
+function mostrarCaducaAviat(productes) {
+
+  const avui = new Date();
+
+  let resultats = [];
+
+  productes.forEach(producte => {
+
+    if (!producte.DataCaducitat) return;
+
+    const dataCad = new Date(producte.DataCaducitat);
+
+    if (isNaN(dataCad)) return;
+
+    const dies = Math.floor(
+      (dataCad - avui) / (1000 * 60 * 60 * 24)
+    );
+
+    if (dies <= 7) {
+
+      resultats.push({
+        nom: producte.Nom,
+        dies: dies
+      });
+
+    }
+
+  });
+
+  resultats.sort((a, b) => a.dies - b.dies);
+
+  let html = "";
+
+  resultats.forEach(item => {
+
+    let icona = "🟡";
+
+    if (item.dies < 0) {
+      icona = "🔴";
+    }
+    else if (item.dies <= 2) {
+      icona = "🟠";
+    }
+
+    let text = "";
+
+    if (item.dies < 0) {
+      text = `caducat fa ${Math.abs(item.dies)} dies`;
+    }
+    else if (item.dies === 0) {
+      text = "caduca avui";
+    }
+    else if (item.dies === 1) {
+      text = "caduca demà";
+    }
+    else {
+      text = `caduca en ${item.dies} dies`;
+    }
+
+    html += `
+      <p>
+        ${icona} ${item.nom} (${text})
+      </p>
+    `;
+
+  });
+
+  if (html === "") {
+    html = "Tot correcte 👍";
+  }
+
+  document.getElementById("caducaAviat").innerHTML = html;
+
+}  
 </script>
 
 </body>
