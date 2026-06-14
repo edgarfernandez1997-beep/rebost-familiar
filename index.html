@@ -86,13 +86,13 @@ function nouProducte() {
       quantitat: quantitat
     })
   })
-  .then(res => res.json())
-  .then(() => {
-
-    alert("Producte afegit!");
-
-    location.reload();
-
+  .then(res => {
+    console.log(RESPOSTA:", res);
+    alert("Producte afegit!)";
+  })
+  .catch(error => {
+    console.error("ERROR", error);
+    alert("ERROR");
   });
 
 }
