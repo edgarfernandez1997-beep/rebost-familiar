@@ -149,7 +149,7 @@ max-width:90%;
 <script>
 
 const API_URL = "https://script.google.com/macros/s/AKfycbwZGaCwO3C_R0Sp11OrXwulxIiDTbxmPA3DBcVH0TruxyIPvB3V7Hg3nfvzYg5YBKQf/exec";
-
+  
 fetch(API_URL)
   .then(res => res.json())
   .then(productes => {
@@ -206,6 +206,16 @@ document.getElementById("guardarProducte").onclick = function() {
     dataCaducitat,
     llocCompra
   });
+
+alert(JSON.stringify({
+  nom,
+  categoria,
+  quantitat,
+  ubicacio,
+  minim,
+  dataCaducitat,
+  llocCompra
+}));
   
   fetch(API_URL, {
     method: "POST",
