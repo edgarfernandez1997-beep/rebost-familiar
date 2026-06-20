@@ -153,6 +153,8 @@ max-width:90%;
 <script>
 
 const API_URL = "https://script.google.com/macros/s/AKfycbz8xFPgObxC1dtzZK3Zibx8I9xMXUqvnD2uzcgHKUYFCC7x9-IyAOcqaNrndteTKRg/exec";
+
+let producteEditant = null;
   
 fetch(API_URL)
   .then(res => res.json())
@@ -272,6 +274,8 @@ document.getElementById("detallCaducitat").textContent =
     producte["Lloc compra"] || "";
 
   document.getElementById("editarProducte").onclick = function() {
+
+    producteEditant = producteId;
 
   document.getElementById("nouNom").value =
     producte.Nom || "";
