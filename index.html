@@ -272,8 +272,30 @@ document.getElementById("detallCaducitat").textContent =
     producte["Lloc compra"] || "";
 
   document.getElementById("editarProducte").onclick = function() {
-    alert(producte.Nom);
-  };
+
+  document.getElementById("nouNom").value =
+    producte.Nom || "";
+
+  document.getElementById("novaCategoria").value =
+    producte.Categoria || "";
+
+  document.getElementById("novaQuantitat").value =
+    producte.Quantitat || "";
+
+  document.getElementById("novaUbicacio").value =
+    producte["Ubicació"] || "";
+
+  document.getElementById("nouMinim").value =
+    producte["Mínim"] || "";
+
+  document.getElementById("nouLlocCompra").value =
+    producte["Lloc compra"] || "";
+
+  document.getElementById("detallProducte").style.display = "none";
+
+  document.getElementById("formulariProducte").style.display = "flex";
+
+};
   
   document.getElementById("detallProducte").style.display = "flex";
 
