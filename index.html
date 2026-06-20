@@ -197,6 +197,16 @@ document.getElementById("guardarProducte").onclick = function() {
   const dataCaducitat = document.getElementById("novaCaducitat").value;
   const llocCompra = document.getElementById("nouLlocCompra").value;
 
+  console.log({
+    nom,
+    categoria,
+    quantitat,
+    ubicació,
+    minim,
+    dataCaducitat,
+    llocCompra
+  });
+  
   fetch(API_URL, {
     method: "POST",
     body: JSON.stringify({
