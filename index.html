@@ -237,8 +237,12 @@ function veureProducte(producte) {
   document.getElementById("detallMinim").textContent =
     producte["Mínim"] || "";
 
-  document.getElementById("detallCaducitat").textContent =
-    producte.DataCaducitat || "";
+ const data = new Date(producte.DataCaducitat);
+
+document.getElementById("detallCaducitat").textContent =
+  isNaN(data)
+    ? "-"
+    : data.toLocaleDateString("ca-ES");
 
   document.getElementById("detallLlocCompra").textContent =
     producte["Lloc compra"] || "";
