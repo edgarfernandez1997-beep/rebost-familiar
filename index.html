@@ -271,6 +271,10 @@ document.getElementById("detallCaducitat").textContent =
   document.getElementById("detallLlocCompra").textContent =
     producte["Lloc compra"] || "";
 
+  document.getElementById("editarProducte").onclick = function() {
+    alert(producte.Nom);
+  };
+  
   document.getElementById("detallProducte").style.display = "flex";
 
 }
