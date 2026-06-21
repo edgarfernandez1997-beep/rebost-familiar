@@ -376,9 +376,17 @@ function mostrarLlistaCompra(productes) {
 
     if (producte.ALaLlista) {
 
+      const marcat = producte.Comprat ? "checked" : "";
+
       html += `
         <p>
-          🛒 ${producte.Nom}
+          <input
+            type="checkbox"
+            ${marcat}
+            onchange="marcarComprat(${producte.ID}, this.checked)"
+          >
+
+          ${producte.Nom}
         </p>
       `;
 
@@ -498,7 +506,21 @@ function mostrarCaducaAviat(productes) {
 
   document.getElementById("caducaAviat").innerHTML = html;
 
+} 
+
+function marcarComprat(id, comprat) {
+
+  fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      accio: "marcarComprat",
+      id: id,
+      comprat: comprat
+    })
+  });
+
 }  
+
 </script>
 
 </body>
