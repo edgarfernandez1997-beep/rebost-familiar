@@ -188,6 +188,7 @@ fetch(API_URL)
 
     document.getElementById("inventari").innerHTML = html;
     
+    mostrarLlistaCompra(productes);
     mostrarStockBaix(productes);
     mostrarCaducaAviat(productes);
 
@@ -367,6 +368,8 @@ document.getElementById("tancarDetall").onclick = function() {
 
 };
 
+mostrarStockBaix(productes);
+  
 function mostrarStockBaix(productes) {
 
   let html = "";
