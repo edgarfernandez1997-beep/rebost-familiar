@@ -214,6 +214,7 @@ document.getElementById("guardarProducte").onclick = function() {
   });
 
 alert(JSON.stringify({
+  id: producteEditant,
   nom,
   categoria,
   quantitat,
@@ -228,6 +229,7 @@ alert(JSON.stringify({
   fetch(API_URL, {
     method: "POST",
     body: JSON.stringify({
+      id: producteEditant,
       nom,
       categoria,
       quantitat,
