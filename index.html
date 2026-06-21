@@ -145,6 +145,10 @@ max-width:90%;
 <button id="eliminarProducte">
   Eliminar
 </button>
+
+<button id="afegirLlista">
+  Afegir a la compra
+</button>
   
 <button id="tancarDetall">
   Tancar
@@ -156,7 +160,7 @@ max-width:90%;
   
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzVE2ZfJYWMATm6ZEjSAqapF6_toWQF0ZF-YEK8tYWijsT9L6EFHB4ObdZnawGX5IO9/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxunA_xTnkHUZY5YgCmlHvtv4iVzGD1uWkZ3uMFbZr_GUW4mypOqf1TJHmKmR-G_YrO/exec";
 
 let producteEditant = null;
   
@@ -303,6 +307,22 @@ document.getElementById("detallCaducitat").textContent =
 
 };
 
+document.getElementById("afegirLlista").onclick = function() {
+
+  fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      accio: "afegirLlista",
+      id: producte.ID
+    })
+  })
+  .then(() => {
+    alert("Afegit a la llista de compra");
+    location.reload();
+  });
+
+};
+  
   document.getElementById("editarProducte").onclick = function() {
 
     producteEditant = producte.ID;
