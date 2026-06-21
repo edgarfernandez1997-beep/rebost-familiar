@@ -141,6 +141,10 @@ max-width:90%;
 <button id="editarProducte">
   Editar
 </button>
+
+<button id="eliminarProducte">
+  Eliminar
+</button>
   
 <button id="tancarDetall">
   Tancar
@@ -152,7 +156,7 @@ max-width:90%;
   
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyih2qAN94-ee-5zYtpJRBGwdLGVdYQkjxRuaty68kHb6gGCiWfJ303WmvO5ATaqKXE/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbx1Yc-4hDiZ-5Bi0EgrL8pcbhFgPqZWQSHcST7KnknpfntOiCFFRBx5o0S6IBgqI5eZ/exec";
 
 let producteEditant = null;
   
@@ -284,6 +288,26 @@ document.getElementById("detallCaducitat").textContent =
     producteEditant = producte.ID;
 
     alert("Assignat ID = " + producteEditant);
+
+  document.getElementById("eliminarProducte").onclick = function() {
+
+    if (!confirm("Eliminar aquest producte?")) {
+      return;
+    }
+
+    fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        accio: "eliminar",
+        id: producte.ID
+      })
+    })
+    .then(() => {
+      alert("Producte eliminat");
+      location.reload();
+    });
+
+};
 
   document.getElementById("nouNom").value =
     producte.Nom || "";
