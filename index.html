@@ -368,6 +368,32 @@ document.getElementById("tancarDetall").onclick = function() {
 
 };
 
+function mostrarLlistaCompra(productes) {
+
+  let html = "";
+
+  productes.forEach(producte => {
+
+    if (producte.ALaLlista) {
+
+      html += `
+        <p>
+          🛒 ${producte.Nom}
+        </p>
+      `;
+
+    }
+
+  });
+
+  if (html === "") {
+    html = "No hi ha productes a la llista.";
+  }
+
+  document.getElementById("llistaCompra").innerHTML = html;
+
+}
+  
 mostrarStockBaix(productes);
   
 function mostrarStockBaix(productes) {
