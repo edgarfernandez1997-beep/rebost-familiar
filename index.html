@@ -176,6 +176,8 @@ fetch(API_URL)
 
     productes.forEach(producte => {
 
+      if (!producte.Nom) return;
+
       html += `
         <p onclick='veureProducte(${JSON.stringify(producte)})'
           style="cursor:pointer;">
